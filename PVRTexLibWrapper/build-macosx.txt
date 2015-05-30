@@ -1,0 +1,1 @@
+clang++ -dynamiclib PVRTexLibWrapper.cpp PVRTexTool/Library/OSX_x86/Static/libPVRTexLib.a -current_version 1.0 -compatibility_version 1.0 -fvisibility=hidden -I PVRTexTool/Library/Include -arch i386 -Wno-ctor-dtor-privacy -D__ANSI__ -stdlib=libc++ -o libPVRTexLibWrapper.dylib
