@@ -8,12 +8,12 @@ ARCH          = x64
 CC            = gcc
 CXX           = g++
 DEFINES       = 
-CFLAGS        = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CFLAGS        = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIC -fvisibility=hidden -fvisibility-inlines-hidden $(DEFINES)
+CXXFLAGS      = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIC -fvisibility=hidden -fvisibility-inlines-hidden $(DEFINES)
 INCPATH       = -I/usr/include -I../.. -I../../PVRTexTool/Library/Include
 LINK          = g++
 LFLAGS        = -m64 -Wl,-O1 -shared -Wl,-soname,libPVRTexLibWrapper.so
-LIBS          = $(SUBLIBS) -lpthread 
+LIBS          = $(SUBLIBS) -lpthread -L../../PVRTexTool/Library/Linux_x86_64/Static/ -lPVRTexLib
 AR            = ar cqs
 RANLIB        = 
 STRIP         = strip
@@ -71,7 +71,7 @@ $(TARGETA):  $(OBJECTS) $(OBJCOMP)
 	-$(DEL_FILE) $(TARGETA) 
 	$(AR) $(TARGETA) $(OBJECTS)
 
-clean:compiler_clean 
+clean:
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
 
