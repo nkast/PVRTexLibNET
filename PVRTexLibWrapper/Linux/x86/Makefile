@@ -8,11 +8,11 @@ ARCH          = x86
 CC            = gcc
 CXX           = g++
 DEFINES       = 
-CFLAGS        = -m32 -pipe -O2 -Wall -W -D_REENTRANT -fPIC -fvisibility=hidden -fvisibility-inlines-hidden $(DEFINES)
-CXXFLAGS      = -m32 -pipe -O2 -Wall -W -D_REENTRANT -fPIC -fvisibility=hidden -fvisibility-inlines-hidden $(DEFINES)
+CFLAGS        = -m32 -pipe -O2 -Wall -W -D_REENTRANT -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -fno-lto -fno-use-linker-plugin $(DEFINES)
+CXXFLAGS      = -m32 -pipe -O2 -Wall -W -D_REENTRANT -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -fno-lto -fno-use-linker-plugin $(DEFINES)
 INCPATH       = -I/usr/include -I../.. -I../../PVRTexTool/Library/Include
 LINK          = g++
-LFLAGS        = -m32 -Wl,-O1 -shared -Wl,-soname,libPVRTexLibWrapper.so
+LFLAGS        = -m32 -Wl,-O1 -shared -Wl,-soname,libPVRTexLibWrapper.so -fno-lto -fno-use-linker-plugin
 LIBS          = $(SUBLIBS) -lpthread -L../../PVRTexTool/Library/Linux_x86_32/Static/ -lPVRTexLib
 AR            = ar cqs
 RANLIB        = 
