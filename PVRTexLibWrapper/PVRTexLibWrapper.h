@@ -35,23 +35,23 @@ using namespace pvrtexture;
 #endif
 
 extern "C" {
-    DLL_PUBLIC void __cdecl CreateTexture(void* data, uint32 u32Width, uint32 u32Height, uint32 u32Depth, PixelType ptFormat, bool preMultiplied, EPVRTVariableType eChannelType, EPVRTColourSpace eColourspace);
+	DLL_PUBLIC void* __cdecl CreateTexture(void* data, uint32 u32Width, uint32 u32Height, uint32 u32Depth, PixelType ptFormat, bool preMultiplied, EPVRTVariableType eChannelType, EPVRTColourSpace eColourspace);
 
-    DLL_PUBLIC void __cdecl CreateTextureFromFile(const char* filePath);
+	DLL_PUBLIC void* __cdecl CreateTextureFromFile(const char* filePath);
 
-    DLL_PUBLIC bool __cdecl SaveTexture(const char* filePath);
+	DLL_PUBLIC bool __cdecl SaveTexture(void* pPvrTexture, const char* filePath);
 
-    DLL_PUBLIC void __cdecl DestroyTexture();
+	DLL_PUBLIC void __cdecl DestroyTexture(void* pPvrTexture);
 
-    DLL_PUBLIC bool __cdecl Resize(uint32 u32NewWidth, uint32 u32NewHeight, uint32 u32NewDepth, EResizeMode eResizeMode);
+	DLL_PUBLIC bool __cdecl Resize(void* pPvrTexture, uint32 u32NewWidth, uint32 u32NewHeight, uint32 u32NewDepth, EResizeMode eResizeMode);
 
-    DLL_PUBLIC bool __cdecl PremultiplyAlpha();
+	DLL_PUBLIC bool __cdecl PremultiplyAlpha(void* pPvrTexture);
 
-    DLL_PUBLIC bool __cdecl GenerateMIPMaps(EResizeMode eFilterMode, uint32 uiMIPMapsToDo = PVRTEX_ALLMIPLEVELS);
+	DLL_PUBLIC bool __cdecl GenerateMIPMaps(void* pPvrTexture, EResizeMode eFilterMode, uint32 uiMIPMapsToDo = PVRTEX_ALLMIPLEVELS);
 
-    DLL_PUBLIC bool __cdecl Transcode(PixelType ptFormat, EPVRTVariableType eChannelType, EPVRTColourSpace eColourspace, ECompressorQuality eQuality = ePVRTCNormal, bool bDoDither = false);
+	DLL_PUBLIC bool __cdecl Transcode(void* pPvrTexture, PixelType ptFormat, EPVRTVariableType eChannelType, EPVRTColourSpace eColourspace, ECompressorQuality eQuality = ePVRTCNormal, bool bDoDither = false);
 
-    DLL_PUBLIC uint32 __cdecl GetTextureDataSize(int32 iMIPLevel = PVRTEX_ALLMIPLEVELS);
+	DLL_PUBLIC uint32 __cdecl GetTextureDataSize(void* pPvrTexture, int32 iMIPLevel = PVRTEX_ALLMIPLEVELS);
 
-    DLL_PUBLIC void __cdecl GetTextureData(void* data, uint32 dataSize, uint32 uiMIPLevel = 0);
+	DLL_PUBLIC void __cdecl GetTextureData(void* pPvrTexture, void* data, uint32 dataSize, uint32 uiMIPLevel = 0);
 }
