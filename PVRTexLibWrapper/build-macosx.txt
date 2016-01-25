@@ -1,1 +1,3 @@
-clang++ -dynamiclib PVRTexLibWrapper.cpp PVRTexTool/Library/OSX_x86/Static/libPVRTexLib.a -current_version 1.0 -compatibility_version 1.0 -fvisibility=hidden -I PVRTexTool/Library/Include -arch i386 -Wno-ctor-dtor-privacy -D__ANSI__ -stdlib=libc++ -o libPVRTexLibWrapper.dylib
+#!/bin/sh
+
+clang++ -dynamiclib PVRTexLibWrapper.cpp PVRTexTool/Library/OSX_x86/Static/libPVRTexLib.a -current_version 1.0 -compatibility_version 1.0 -fvisibility=hidden -I PVRTexTool/Library/Include -arch i386 -arch x86_64 -Wno-ctor-dtor-privacy -D__ANSI__ -std=c++11 -stdlib=libc++ -exported_symbols_list export-list -o libPVRTexLibWrapper.dylib

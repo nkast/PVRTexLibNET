@@ -97,32 +97,32 @@ namespace PVRTexLibNET
         #region Interop
         private const string dllName = "PVRTexLibWrapper.dll";
 
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr CreateTexture(IntPtr data, uint u32Width, uint u32Height, uint u32Depth, PixelFormat ptFormat, bool preMultiplied, VariableType eChannelType, ColourSpace eColourspace);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CreateTexture")]
+        static extern IntPtr CreateTexture(IntPtr data, uint u32Width, uint u32Height, uint u32Depth, PixelFormat ptFormat, bool preMultiplied, VariableType eChannelType, ColourSpace eColourspace);
         
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr CreateTexture(string filePath);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CreateTextureFromFile")]
+        static extern IntPtr CreateTexture(string filePath);
 
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool SaveTexture(IntPtr pPvrTexture, string filePath);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SaveTexture")]
+        static extern bool SaveTexture(IntPtr pPvrTexture, string filePath);
 
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DestroyTexture(IntPtr pPvrTexture);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "DestroyTexture")]
+        static extern void DestroyTexture(IntPtr pPvrTexture);
 
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool Resize(IntPtr pPvrTexture, uint u32NewWidth, uint u32NewHeight, uint u32NewDepth, ResizeMode eResizeMode);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Resize")]
+        static extern bool Resize(IntPtr pPvrTexture, uint u32NewWidth, uint u32NewHeight, uint u32NewDepth, ResizeMode eResizeMode);
 
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool GenerateMIPMaps(IntPtr pPvrTexture, ResizeMode eFilterMode, uint uiMIPMapsToDo = int.MaxValue);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "GenerateMIPMaps")]
+        static extern bool GenerateMIPMaps(IntPtr pPvrTexture, ResizeMode eFilterMode, uint uiMIPMapsToDo = int.MaxValue);
 
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool Transcode(IntPtr pPvrTexture, PixelFormat ptFormat, VariableType eChannelType, ColourSpace eColourspace, CompressorQuality eQuality = CompressorQuality.PVRTCNormal, bool bDoDither = false);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Transcode")]
+        static extern bool Transcode(IntPtr pPvrTexture, PixelFormat ptFormat, VariableType eChannelType, ColourSpace eColourspace, CompressorQuality eQuality = CompressorQuality.PVRTCNormal, bool bDoDither = false);
 
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint GetTextureDataSize(IntPtr pPvrTexture, int iMIPLevel = -1);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "GetTextureDataSize")]
+        static extern uint GetTextureDataSize(IntPtr pPvrTexture, int iMIPLevel = -1);
 
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void GetTextureData(IntPtr pPvrTexture, IntPtr data, uint dataSize, uint uiMIPLevel = 0);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "GetTextureData")]
+        static extern void GetTextureData(IntPtr pPvrTexture, IntPtr data, uint dataSize, uint uiMIPLevel = 0);
         #endregion Interop
 
         private IntPtr _pPvrTexture = IntPtr.Zero;
