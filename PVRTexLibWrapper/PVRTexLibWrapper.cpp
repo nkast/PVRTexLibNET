@@ -8,8 +8,7 @@
 
 using namespace pvrtexture;
 
-
-extern void* __cdecl CreateTexture(void* data, uint32 u32Width, uint32 u32Height, uint32 u32Depth, PixelType ptFormat, bool preMultiplied, EPVRTVariableType eChannelType, EPVRTColourSpace eColourspace)
+void* __cdecl CreateTexture(void* data, uint32 u32Width, uint32 u32Height, uint32 u32Depth, PixelType ptFormat, bool preMultiplied, EPVRTVariableType eChannelType, EPVRTColourSpace eColourspace)
 {
     PVRTextureHeaderV3 pvrHeader;
     pvrHeader.u32Version = PVRTEX_CURR_IDENT;
@@ -29,14 +28,14 @@ extern void* __cdecl CreateTexture(void* data, uint32 u32Width, uint32 u32Height
 	return pvrTexture;
 }
 
-extern void* __cdecl CreateTextureFromFile(const char* filePath)
+void* __cdecl CreateTextureFromFile(const char* filePath)
 {
 	CPVRTexture* pvrTexture = new CPVRTexture(filePath);
 	
 	return pvrTexture;
 }
 
-extern bool __cdecl SaveTexture(void* pPvrTexture, const char* filePath)
+bool __cdecl SaveTexture(void* pPvrTexture, const char* filePath)
 {
 	CPVRTexture* pvrTexture = (CPVRTexture*)pPvrTexture;
     if (pvrTexture == NULL)
@@ -44,7 +43,7 @@ extern bool __cdecl SaveTexture(void* pPvrTexture, const char* filePath)
     return pvrTexture->saveFile(filePath);
 }
 
-extern void __cdecl DestroyTexture(void* pPvrTexture)
+void __cdecl DestroyTexture(void* pPvrTexture)
 {
 	CPVRTexture* pvrTexture = (CPVRTexture*)pPvrTexture;
     if (pvrTexture != NULL)
@@ -53,7 +52,7 @@ extern void __cdecl DestroyTexture(void* pPvrTexture)
     }
 }
 
-extern bool __cdecl Resize(void* pPvrTexture, uint32 u32NewWidth, uint32 u32NewHeight, uint32 u32NewDepth, EResizeMode eResizeMode)
+bool __cdecl Resize(void* pPvrTexture, uint32 u32NewWidth, uint32 u32NewHeight, uint32 u32NewDepth, EResizeMode eResizeMode)
 {
 	CPVRTexture* pvrTexture = (CPVRTexture*)pPvrTexture;
     if (pvrTexture == NULL)
@@ -61,7 +60,7 @@ extern bool __cdecl Resize(void* pPvrTexture, uint32 u32NewWidth, uint32 u32NewH
     return pvrtexture::Resize(*pvrTexture, u32NewWidth, u32NewHeight, u32NewDepth, eResizeMode);
 }
 
-extern bool __cdecl PremultiplyAlpha(void* pPvrTexture)
+bool __cdecl PremultiplyAlpha(void* pPvrTexture)
 {
 	CPVRTexture* pvrTexture = (CPVRTexture*)pPvrTexture;
     if (pvrTexture == NULL)
@@ -69,7 +68,7 @@ extern bool __cdecl PremultiplyAlpha(void* pPvrTexture)
     return pvrtexture::PreMultiplyAlpha(*pvrTexture);
 }
 
-extern bool __cdecl GenerateMIPMaps(void* pPvrTexture, EResizeMode eFilterMode, uint32 uiMIPMapsToDo)
+bool __cdecl GenerateMIPMaps(void* pPvrTexture, EResizeMode eFilterMode, uint32 uiMIPMapsToDo)
 {
 	CPVRTexture* pvrTexture = (CPVRTexture*)pPvrTexture;
     if (pvrTexture == NULL)
@@ -77,7 +76,7 @@ extern bool __cdecl GenerateMIPMaps(void* pPvrTexture, EResizeMode eFilterMode, 
     return pvrtexture::GenerateMIPMaps(*pvrTexture, eFilterMode, uiMIPMapsToDo);
 }
 
-extern bool __cdecl Transcode(void* pPvrTexture, PixelType ptFormat, EPVRTVariableType eChannelType, EPVRTColourSpace eColourspace, ECompressorQuality eQuality, bool bDoDither)
+bool __cdecl Transcode(void* pPvrTexture, PixelType ptFormat, EPVRTVariableType eChannelType, EPVRTColourSpace eColourspace, ECompressorQuality eQuality, bool bDoDither)
 {
 	CPVRTexture* pvrTexture = (CPVRTexture*)pPvrTexture;
     if (pvrTexture == NULL)
@@ -85,7 +84,7 @@ extern bool __cdecl Transcode(void* pPvrTexture, PixelType ptFormat, EPVRTVariab
     return pvrtexture::Transcode(*pvrTexture, ptFormat, eChannelType, eColourspace, eQuality, bDoDither);
 }
 
-extern uint32 __cdecl GetTextureDataSize(void* pPvrTexture, int32 iMIPLevel)
+uint32 __cdecl GetTextureDataSize(void* pPvrTexture, int32 iMIPLevel)
 {
 	CPVRTexture* pvrTexture = (CPVRTexture*)pPvrTexture;
     if (pvrTexture == NULL)
@@ -93,7 +92,7 @@ extern uint32 __cdecl GetTextureDataSize(void* pPvrTexture, int32 iMIPLevel)
     return pvrTexture->getDataSize(iMIPLevel);
 }
 
-extern void __cdecl GetTextureData(void* pPvrTexture, void* data, uint32 dataSize, uint32 uiMIPLevel)
+void __cdecl GetTextureData(void* pPvrTexture, void* data, uint32 dataSize, uint32 uiMIPLevel)
 {
 	CPVRTexture* pvrTexture = (CPVRTexture*)pPvrTexture;
     if (pvrTexture == NULL)
